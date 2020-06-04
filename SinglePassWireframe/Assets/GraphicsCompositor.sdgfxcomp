@@ -116,6 +116,7 @@ RenderFeatures:
                 EffectName: null
         PipelineProcessors: {}
     85f0b56604343223db36f8b3cff29b35*: !SinglePassWireframe.SinglePassWireframeRenderFeature,SinglePassWireframe
+        ScaleAdjust: 0.001
         RenderStageSelectors:
             ccc3177d91f4005b61684fd247aa21c3: !Stride.Rendering.SimpleGroupToRenderStageSelector,Stride.Rendering
                 RenderStage: ref!! ac3a5692-5f98-4142-94c0-08bd191b0b17

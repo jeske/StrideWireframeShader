@@ -138,7 +138,7 @@ Hierarchy:
                     8693469ade4eb33e69ce4cf9e8684633: !SinglePassWireframe.WireframeScript,SinglePassWireframe
                         Id: 7b6713bb-8bd6-42d7-8e57-df88f8443f0b
                         Enabled: true
-                        LineWidth: 1.16
+                        LineWidth: 1.23
                         Color: {R: 0.247058809, G: 1.0, B: 0.661176443}
         -   Entity:
                 Id: abb20e75-c7d2-4c0d-b7de-609608a5da8c

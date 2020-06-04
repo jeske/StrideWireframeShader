@@ -1,4 +1,6 @@
-﻿using Stride.Core.Mathematics;
+﻿using Stride.Core;
+using Stride.Core.Annotations;
+using Stride.Core.Mathematics;
 using Stride.Engine;
 using Stride.Graphics;
 using Stride.Rendering;
@@ -14,6 +16,13 @@ namespace SinglePassWireframe
     {
         DynamicEffectInstance shader;
         MutablePipelineState pipelineState;
+
+        /// <summary>
+        /// Adjust scale a bit of wireframe model to prevent z-fighting
+        /// </summary>
+        [DataMember(10)]
+        [DataMemberRange(0.0f, 0.1f, 0.001f, 0.002f, 4)]
+        public float ScaleAdjust = 0.001f;
 
         public override Type SupportedRenderObjectType => typeof(RenderMesh);
 
@@ -78,7 +87,7 @@ namespace SinglePassWireframe
 
                 // set shader parameters
                 shader.Parameters.Set(TransformationKeys.WorldViewProjection, renderMesh.World * renderView.ViewProjection); // matrix
-                shader.Parameters.Set(TransformationKeys.WorldScale, new Vector3(1.001f)); // increase size to avoid z-fight
+                shader.Parameters.Set(TransformationKeys.WorldScale, new Vector3(ScaleAdjust + 1.0f)); // increase size to avoid z-fight
                 shader.Parameters.Set(SinglePassWireframeShaderKeys.Viewport, new Vector4(context.RenderContext.RenderView.ViewSize, 0, 0));
                 shader.Parameters.Set(SinglePassWireframeShaderKeys.LineWidth, wireframeScript.LineWidth);
                 shader.Parameters.Set(SinglePassWireframeShaderKeys.LineColor, (Vector3)wireframeScript.Color);
