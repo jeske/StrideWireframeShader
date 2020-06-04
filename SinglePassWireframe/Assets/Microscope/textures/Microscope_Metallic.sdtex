@@ -1,0 +1,6 @@
+!Texture
+Id: 9681c1ea-3f03-4a4e-b178-52bc03f6dc4f
+SerializedVersion: {Stride: 2.0.0.0}
+Tags: []
+Source: !file Microscope_Metallic.png
+Type: !GrayscaleTextureType {}

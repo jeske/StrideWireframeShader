@@ -1,0 +1,15 @@
+!Model
+Id: 5c48b3b2-1b29-4fb7-98c5-74d7b9ab6bf9
+SerializedVersion: {Stride: 2.0.0.0}
+Tags: []
+Source: !file Microscope.fbx
+Skeleton: null
+PivotPosition: {X: 0.0, Y: 0.0, Z: 0.0}
+Materials:
+    3ba5ae2db0ffbbedf5f4ebc33009ffd9:
+        Name: Microscope
+        MaterialInstance:
+            Material: e8f1da9e-b4a7-4e96-b6e2-960a44e91835:Microscope/MicroscopeMaterial
+Modifiers: {}
+~SourceHashes:
+    8c3b81ff0b7d36af6d2a1cfc2ef0c483~Microscope.fbx: b18005bbe3b3052682920ee49af79f6f

@@ -1,0 +1,6 @@
+!Texture
+Id: ca4386d8-28b9-4319-a9ba-cf1ebdf6a3f1
+SerializedVersion: {Stride: 2.0.0.0}
+Tags: []
+Source: !file Microscope_Mixed_AO.png
+Type: !GrayscaleTextureType {}

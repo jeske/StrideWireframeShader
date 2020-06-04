@@ -1,0 +1,7 @@
+!Texture
+Id: db9c5c71-1916-49f1-8364-1719d8162668
+SerializedVersion: {Stride: 2.0.0.0}
+Tags: []
+Source: !file Microscope_Base_Color.png
+Type: !ColorTextureType
+    ColorKeyColor: {R: 255, G: 0, B: 255, A: 255}

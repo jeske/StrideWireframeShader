@@ -1,0 +1,8 @@
+!Texture
+Id: bfbc6564-7de1-4603-8a25-7ea5b2f73914
+SerializedVersion: {Stride: 2.0.0.0}
+Tags: []
+Source: !file Microscope_Normal_DirectX.png
+IsCompressed: false
+Type: !NormalMapTextureType
+    InvertY: false

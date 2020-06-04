@@ -1,0 +1,6 @@
+!Texture
+Id: 445eb63f-a768-4a5d-a9e6-08032d5908b6
+SerializedVersion: {Stride: 2.0.0.0}
+Tags: []
+Source: !file Microscope_Roughness.png
+Type: !GrayscaleTextureType {}
