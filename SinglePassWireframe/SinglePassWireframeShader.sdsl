@@ -100,6 +100,9 @@
         points[1] = projToWindow(positionWS[1]);
         points[2] = projToWindow(positionWS[2]);
 
+        float3 vertExclude = float3(0, 0, 0);
+        float excludeEdgeLength = LineWidth + 100;
+
         // general computation
         if (vertexCase == 0)
         {
@@ -114,6 +117,22 @@
             lengths[0] = length(edges[0]);
             lengths[1] = length(edges[1]);
             lengths[2] = length(edges[2]);
+
+            float3 edgesWS[3];
+            edgesWS[0] = input[1].Position.xyz - input[0].Position.xyz;
+            edgesWS[1] = input[2].Position.xyz - input[1].Position.xyz;
+            edgesWS[2] = input[0].Position.xyz - input[2].Position.xyz;
+
+            float lengthsWS[3];
+            lengthsWS[0] = length(edgesWS[0]);
+            lengthsWS[1] = length(edgesWS[1]);
+            lengthsWS[2] = length(edgesWS[2]);
+
+            float maxLength = max(max(lengthsWS[0], lengthsWS[1]), lengthsWS[2]);
+
+            vertExclude.x = lengthsWS[0] == maxLength ? 1 : 0;
+            vertExclude.y = lengthsWS[1] == maxLength ? 1 : 0;
+            vertExclude.z = lengthsWS[2] == maxLength ? 1 : 0;
 
             // compute the cos angle of each vertices
             float cosAngles[3];
@@ -141,9 +160,9 @@
             streams = input[0];
             streams.Case = vertexCase;
             streams.Position = input[0].Position;
-            streams.EdgeA[0] = 0;
+            streams.EdgeA[0] = vertExclude.x * excludeEdgeLength;
             streams.EdgeA[1] = heights[0];
-            streams.EdgeA[2] = 0;
+            streams.EdgeA[2] = vertExclude.z * excludeEdgeLength;
             streams.EdgeB[0] = edgeOffsets[0];
             streams.EdgeB[1] = edgeOffsets[1] + edgeSigns[1] * cosAngles[1] * lengths[0];
             streams.EdgeB[2] = edgeOffsets[2] + edgeSigns[2] * lengths[2];
@@ -153,8 +172,8 @@
             streams = input[1];
             streams.Case = vertexCase;
             streams.Position = input[1].Position;
-            streams.EdgeA[0] = 0;
-            streams.EdgeA[1] = 0;
+            streams.EdgeA[0] = vertExclude.x * excludeEdgeLength;
+            streams.EdgeA[1] = vertExclude.y * excludeEdgeLength;
             streams.EdgeA[2] = heights[1];
             streams.EdgeB[0] = edgeOffsets[0] + edgeSigns[0] * lengths[0];
             streams.EdgeB[1] = edgeOffsets[1];
@@ -166,8 +185,8 @@
             streams.Case = vertexCase;
             streams.Position = input[2].Position;
             streams.EdgeA[0] = heights[2];
-            streams.EdgeA[1] = 0;
-            streams.EdgeA[2] = 0;
+            streams.EdgeA[1] = vertExclude.y * excludeEdgeLength;
+            streams.EdgeA[2] = vertExclude.z * excludeEdgeLength;
             streams.EdgeB[0] = edgeOffsets[0] + edgeSigns[0] * cosAngles[0] * lengths[2];
             streams.EdgeB[1] = edgeOffsets[1] + edgeSigns[1] * lengths[1];
             streams.EdgeB[2] = edgeOffsets[2];
